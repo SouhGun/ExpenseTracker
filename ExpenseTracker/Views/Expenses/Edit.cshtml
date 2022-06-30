@@ -1,0 +1,42 @@
+﻿@model ExpenseTracker.Models.Expense
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="row mt-2 d-flex justify-content-center text-center">
+    <div class="col-md-5">
+        <h2>Edit an expense</h2>
+        <hr />
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ExpenseID" />
+            <div class="form-group">
+                <label asp-for="ExpenseCategorieID" class="control-label">Categorie</label>
+                <select asp-for="ExpenseCategorieID" class="form-control" asp-items="ViewBag.ExpenseCategorieID"></select>
+                <span asp-validation-for="ExpenseCategorieID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpenseDate" class="control-label">Date</label>
+                <input asp-for="ExpenseDate" class="form-control" />
+                <span asp-validation-for="ExpenseDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Amount" class="control-label"></label>
+                <input asp-for="Amount" type="number" min="0" class="form-control" />
+                <span asp-validation-for="Amount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

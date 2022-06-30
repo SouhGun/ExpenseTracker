@@ -1,0 +1,84 @@
+﻿@model IEnumerable<ExpenseTracker.Models.Expense>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="row pb-3 d-flex justify-content-center">
+    <div class="col-4">
+        <center>
+            <h1>Expenses</h1>
+            <p>
+                <a asp-action="Create">Create New</a>
+            </p>
+        </center>
+    </div>
+</div>
+@using (Html.BeginForm())
+{
+    <div class="row py-3 d-flex justify-content-center">
+        <div class="col-8">
+            <div class="form">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-4">
+
+                        <div class="form-group">
+                            <input id="dateInput" type="date" width="10" class="date" name="start" value="@ViewBag.StartDate" />
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+
+                        <div class="form-group">
+                            <input id="dateInput" type="date" width="10" class="date" name="end" value="@ViewBag.EndDate" />
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group-sm">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+<div class="row d-flex justify-content-center">
+    <div class="col-10">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Date
+                    </th>
+                    <th>
+                        Amount
+                    </th>
+                    <th>
+                        Categorie
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ExpenseDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Amount)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ExpenseCategorie.Name)
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.ExpenseID">Edit</a> |
+                            <a asp-action="Delete" asp-route-id="@item.ExpenseID">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

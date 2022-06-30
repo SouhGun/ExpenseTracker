@@ -1,0 +1,30 @@
+﻿@model ExpenseTracker.Models.ExpenseCategorie
+
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="row mt-2 d-flex justify-content-center text-center">
+    <div class="col-md-5">
+        <h3>Create an expense categorie</h3>
+        <hr />
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" required="required" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}
